@@ -12,7 +12,56 @@ form#login {
   background-color: aliceblue;
   border-radius: 5px;
   padding: 0px 10px;
+  width: 400px;
+}
+form#login .error{
+  font-size: 15px;
+  color: red;
+  transition: all 0.5s ease-in-out;
+}
+form#login h1 {
   text-align: center;
+  padding: 10px 0;
+  font-size: 45px;
+}
+form#login div {
+  font-size: 22px;
+  padding: 5px 15px;
+}
+form#login div label {
+  text-align: left;
+}
+form#login div input {
+  display: flex;
+  outline: none;
+  border: 1px solid rgba(128, 128, 128, 0.507);
+  font-size: 15px;
+  width: 100%;
+  padding: 7px 5px;
+  border-radius: 5px;
+  transition: 0.2s ease-out;
+  &:focus {
+    box-shadow: 0 0 3px 1px rgb(89, 154, 224);
+    border: 1px solid rgb(33, 140, 255);
+  }
+}
+
+form#login .login-btn {
+  text-align: right;
+  & > .login {
+    padding: 8px 18px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(0, 0, 255, 0.707);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bolder;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 4px 1px rgba(55, 128, 255, 0.481);
+      transform: scale(1.1);
+    }
+  }
 }
 
 /* nav bar */

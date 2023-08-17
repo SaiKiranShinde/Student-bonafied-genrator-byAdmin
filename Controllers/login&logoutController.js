@@ -10,7 +10,7 @@ const loginApi = (req, res) => {
   pool
     .execute(`select * from user_login where username="${user.username}"`)
     .then(async ([result]) => {
-      if (result.length === 0) return res.redirect("/");
+      if (result.length === 0) return res.render("login",{message:"Invalid Username/Password"});
       if (user.password === result[0].password) {
         const access_token = jwt.sign(
           { rollno: user.username },
@@ -32,7 +32,7 @@ const loginApi = (req, res) => {
         });
         res.redirect("http://localhost:5000/user/dashboard");
       } else {
-        res.redirect("/");
+        res.render("login", { message: "Invalid Username/Password" });
       }
     });
 };

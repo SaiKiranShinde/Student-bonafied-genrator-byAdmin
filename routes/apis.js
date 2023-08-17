@@ -6,7 +6,6 @@ const userControllers=require("../Controllers/userControllers.js")
 routes.post("/login", login_logout_Controllers.loginApi);
 routes.get("/logout", login_logout_Controllers.logoutApi);
 
-
 routes.get("/approve/:id", adminControllers.genBonafied);
 routes.get("/getbonafied", userControllers.getBonafied);
 

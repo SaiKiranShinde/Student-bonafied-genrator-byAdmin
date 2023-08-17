@@ -19,18 +19,31 @@
   <body>
     <form id="login" method="post" action="/api/login">
       <h1>Login</h1>
-      <p>
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required/>
-      </p>
-      <p>
-        <label for="password">Password:</label>
-        <input type="text" name="password" id="password" required/>
-      </p>
-      <p>
-        <button type="submit" >login</buttont>
-      </p>
+      <%if(message!=""){%>
+      <div class="message">
+        <p class="error"><%=message%></p>
+      </div>
+      <%}%>
+      <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="text" name="password" id="password" required />
+      </div>
+      <div class="login-btn">
+        <button type="submit" class="login">Login</button>
+      </div>
     </form>
   </body>
-  <script src="./js/login.js"></script>
+  <script>
+    const messageVal = document.querySelector(".message");
+    if (messageVal) {
+      console.log("ok");
+      setTimeout(() => {
+        document.querySelector(".message").style.display = "none";
+      },20 * 1000);
+    }
+  </script>
 </html>
