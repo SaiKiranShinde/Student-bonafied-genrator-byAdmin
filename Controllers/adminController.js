@@ -25,9 +25,17 @@ const genBonafied = async (req, res) => {
         data: {
           user: {
             name: result[0].name,
-            fatherName: result[0].fathername,
-            currentyear: date.getFullYear(),
-            course: result[0].program,
+            rollno: result[0].rollno,
+            sem: result[0].sem,
+            course: result[0].branch,
+            batch: `${date.getFullYear()}-${new Date(
+              date.getFullYear() + 1,
+              0,
+              1
+            )
+              .getFullYear()
+              .toString()
+              .substr(-2)}`,
             date: `${date.getDate()}-${
               date.getMonth() + 1
             }-${date.getFullYear()}`,
@@ -37,8 +45,7 @@ const genBonafied = async (req, res) => {
       };
       pdf
         .create(document, require("../json/formate.json"))
-        .then((res) => {
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         });

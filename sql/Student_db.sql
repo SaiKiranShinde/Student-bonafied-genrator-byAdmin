@@ -126,7 +126,7 @@ CREATE TABLE `student_details` (
 
 LOCK TABLES `student_details` WRITE;
 /*!40000 ALTER TABLE `student_details` DISABLE KEYS */;
-INSERT INTO `student_details` VALUES (1,'123456789','XYZ','ABCD','123456789','B.Tech','ECE','IV/IV I SEM','1234567890','dontreplay@example.com');
+INSERT INTO `student_details` VALUES (1,'123456789','XYZ','ABCD','B.Tech','ECE','IV/IV I SEM','2022-23',"9876543210",'dontreplay@example.com');
 /*!40000 ALTER TABLE `student_details` ENABLE KEYS */;
 UNLOCK TABLES;
 --
