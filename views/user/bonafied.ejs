@@ -28,7 +28,7 @@
             <%if (data!=null) {%>
                 <%data.forEach(val=>{%>
                     <tr>
-                        <td><%=val.name%></td>
+                        <td><%=val.filename%></td>
                         <td><%=val.date%></td>
                         <td><a href="<%=val.path%>" class="download" download="">Download</a> <a href="" class="delete">Delete</a></td>
                     </tr>

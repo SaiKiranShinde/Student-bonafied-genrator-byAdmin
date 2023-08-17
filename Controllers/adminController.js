@@ -10,43 +10,68 @@ const mysql = require("mysql2"),
 const pool = mysql.createPool(dbConfig).promise();
 
 const genBonafied = async (req, res) => {
-  const date = new Date();
-  const html = fs.readFileSync(
-    path.join(__dirname, "../views/components/bonafiedTemp.html"),
-    "utf-8"
-  );
-  const filename = Math.random() + ".pdf";
-  const document = {
-    html: html,
-    data: {
-      user: {
-        name: "sai kiran shinde",
-        fatherName: "Srinivas Shinde",
-        currentyear: "IV sem I",
-        course: "ECE",
-        date: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`,
-      },
-    },
-    path: "./Uploads/" + filename,
-  };
-  pdf
-    .create(document, require("../json/formate.json"))
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
+  const rollno = req.params.id;
+  pool
+    .execute(`select * from student_details where rollno=?`, [rollno])
+    .then(([result]) => {
+      const date = new Date();
+      const html = fs.readFileSync(
+        path.join(__dirname, "../views/components/bonafiedTemp.html"),
+        "utf-8"
+      );
+      const filename = Math.random() + ".pdf";
+      const document = {
+        html: html,
+        data: {
+          user: {
+            name: result[0].name,
+            fatherName: result[0].fathername,
+            currentyear: date.getFullYear(),
+            course: result[0].program,
+            date: `${date.getDate()}-${
+              date.getMonth() + 1
+            }-${date.getFullYear()}`,
+          },
+        },
+        path: "./Uploads/" + filename,
+      };
+      pdf
+        .create(document, require("../json/formate.json"))
+        .then((res) => {
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      let filepath = "http://localhost:5000/Uploads/" + filename;
+      pool.execute(
+        `insert into student_bonafied (filename,path,date,rollno) values(?,?,?,?)`,
+        [
+          filename,
+          filepath,
+          `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`,
+          rollno,
+        ]
+      );
+      pool
+        .execute(`delete from request_bonafied where rollno=?`, [
+          result[0].rollno,
+        ])
+        .then(([result]) => {
+          res.redirect("/admin/bonafied-request");
+        });
     });
-  let filepath = "http://localhost:5000/Uploads/" + filename;
-  res.render("bonafied", {
-    data: [
-      {
-        name: filename,
-        date: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`,
-        path: filepath,
-      },
-    ],
+};
+const getReqBonafides = (req, res) => {
+  pool.execute("select * from request_bonafied").then(([result]) => {
+    if (result.length === 0) {
+      return res.render("./admin/bonafied", {
+        data: null,
+      });
+    }
+    res.render("./admin/bonafied", {
+      data: result,
+    });
   });
 };
 
-module.exports = { genBonafied };
+module.exports = { genBonafied, getReqBonafides };

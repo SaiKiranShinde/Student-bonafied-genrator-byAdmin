@@ -24,7 +24,28 @@ const getProfile = async (req, res) => {
   }
 };
 const Bonafied = (req, res) => {
-  res.render("./user/bonafied", { data: null });
+  try {
+    const username = jwt.verify(
+      req.cookies["www.student.com"],
+      process.env.ACCESS_KEY
+    );
+    pool
+      .execute(`select * from student_bonafied where rollno=?`, [
+        username.rollno,
+      ])
+      .then(([result]) => {
+        if (result.length === 0) {
+          return res.render("./user/bonafied", {
+            data: null,
+          });
+        }
+        res.render("./user/bonafied", {
+          data: result,
+        });
+      });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const getBonafied = async (req, res) => {
@@ -84,4 +105,4 @@ const getBonafied = async (req, res) => {
   }
 };
 
-module.exports = { getProfile,Bonafied,getBonafied };
+module.exports = { getProfile, Bonafied, getBonafied };

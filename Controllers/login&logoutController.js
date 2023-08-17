@@ -7,7 +7,6 @@ const pool = mysql.createPool(dbConfig).promise();
 
 const loginApi = (req, res) => {
   const user = req.body;
-  console.log(user);
   pool
     .execute(`select * from user_login where username="${user.username}"`)
     .then(async ([result]) => {
