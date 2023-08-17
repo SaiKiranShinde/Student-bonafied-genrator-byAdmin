@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <title>Bonafied</title>
+  </head>
+  <body>
+    <%- include("../components/user-header");-%>
+    <div class="container" id="bonafied">
+      <div class="all-bonafides">
+        <table>
+          <thead>
+            <th>Rollno. Name</th>
+            <th>Date</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <%if(data===null){%>
+                <tr>
+                    <td>No Bonafides</td>
+                </tr>
+            <%}%>
+            <%if (data!=null) {%>
+                <%data.forEach(val=>{%>
+                    <tr>
+                        <td><%=val.name%></td>
+                        <td><%=val.date%></td>
+                        <td><a href="<%=val.path%>" class="Approve" >Approve</a> <a href="" class="delete">Reject</a></td>
+                    </tr>
+                <%})%>
+            <%}%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+  <script src="/js/getbonafied.js"></script>
+</html>

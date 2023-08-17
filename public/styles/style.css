@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Login Form */
+form#login {
+  background-color: aliceblue;
+  border-radius: 5px;
+  padding: 0px 10px;
+  text-align: center;
+}
+
+/* nav bar */
+header#navegation {
+  padding: 10px 0;
+  background-color: orange;
+  border-radius: 0 0 10px 10px;
+}
+
+header#navegation nav ul li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  opacity: 0.5;
+  transition: all 0.5s ease-out;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+header#navegation nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+header#navegation nav ul li .avatar img {
+  width: 30px;
+  border-radius: 100%;
+  margin-right: 5px;
+}
+
+/* user-Bonafied Page */
+
+.container#bonafied .get-bonafied {
+  margin: 10px 15px 0;
+  text-align: end;
+}
+.container#bonafied .get-bonafied button {
+  background-color: rgb(79, 220, 79);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.596);
+  transition: all 0.5s ease-out;
+  border: none;
+  &:hover {
+    background-color: rgb(99, 254, 99);
+    color: rgb(255, 255, 255);
+    transform: scale(1.05);
+    cursor: pointer;
+    &::before {
+      content: "+";
+      color: rgb(255, 255, 255);
+      margin-right: 3px;
+      font-weight: bolder;
+    }
+  }
+}
+.container#bonafied .all-bonafides {
+  margin-top: 10px;
+  border-top: 1px solid rgba(128, 128, 128, 0.333);
+}
+.container#bonafied table {
+  text-align: center;
+  width: 75%;
+  margin: 15px auto;
+  border-collapse: collapse;
+}
+.container#bonafied table thead {
+  font-size: 20px;
+}
+.container#bonafied table tbody tr {
+  &:nth-child(even) {
+    background-color: rgba(128, 128, 128, 0.241);
+  }
+}
+.container#bonafied table tbody tr td {
+  padding: 13px 0;
+}
+
+.container#bonafied table tbody tr a {
+  padding: 5px 8px;
+  border-radius: 5px;
+  margin: 0 3px;
+  color: white;
+  font-weight: bolder;
+  opacity: 0.5;
+  transition: all 0.2s ease-out;
+  &.download {
+    background-color: rgb(26, 26, 214);
+  }
+  &.Approve {
+    background-color: rgb(0, 255, 0);
+  }
+  &.delete {
+    background-color: rgb(255, 0, 0);
+  }
+  &:hover {
+    opacity: 1;
+  }
+}
+
+/* Pofile page */
+.wrapper#profile {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 90vh;
+}
+.wrapper#profile .container {
+  padding: 12px 25px;
+  border-radius: 5px;
+  background-color: rgba(128, 128, 128, 0.166);
+}
+.wrapper#profile .container .fields {
+  display: flex;
+  font-size: 25px;
+  margin: 10px 5px 0;
+}
+.wrapper#profile .container .fields label {
+  width: 300px;
+}
+.wrapper#profile .container .fields input {
+  font-size: 26px;
+  align-items: center;
+  padding: 10px 10px;
+  border-radius: 6px;
+  width: 100%;
+}

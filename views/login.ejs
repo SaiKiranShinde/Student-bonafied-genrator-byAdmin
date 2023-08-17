@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <title>Login Page</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: rgba(201, 152, 227, 0.705);
+      }
+    </style>
+  </head>
+  <body>
+    <form id="login" method="post" action="/api/login">
+      <h1>Login</h1>
+      <p>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required/>
+      </p>
+      <p>
+        <label for="password">Password:</label>
+        <input type="text" name="password" id="password" required/>
+      </p>
+      <p>
+        <button type="submit" >login</buttont>
+      </p>
+    </form>
+  </body>
+  <script src="./js/login.js"></script>
+</html>
