@@ -9,4 +9,10 @@
   <body>
      <%-include("../components/user-header");-%>
   </body>
+  <script src="/js/dashboard.js"></script>
+  <script>
+  setInterval(() => {
+    if(getCookie("www.student.com")===null) window.location.href="/login"
+  }, 100);
+</script>
 </html>

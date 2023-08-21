@@ -3,10 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=, initial-scale=1.0" />
-    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="/styles/style.css" />
     <title>Dashboard</title>
   </head>
   <body>
-     <%-include("../components/admin-header");-%>
+    <%-include("../components/admin-header");-%>
   </body>
+<script src="/js/dashboard.js"></script>
+<script>
+  setInterval(() => {
+    if(getCookie("www.admin.com")===null) window.location.href="/login"
+  }, 100);
+</script>
 </html>
