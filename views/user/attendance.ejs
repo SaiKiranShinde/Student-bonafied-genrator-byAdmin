@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>profile</title>
+  </head>
+  <body>
+    <%-include("../components/user-header");-%>
+
+    <div style="width: 820px; margin: 0 auto;">
+      <canvas id="myChart"></canvas>
+    </div>
+  </body>
+
+  <script>
+    const ctx = document.getElementById("myChart");
+    fetch("http://localhost:5000/api/getattendance")
+      .then((res) => res.json())
+      .then((data) => {
+        let student_data = Object.values(data.studentData)
+          .splice(3, Object.values(data.studentData).length - 3)
+          .map((i) => parseInt(i));
+        let batch_data = Object.values(data.batchData)
+          .splice(2, Object.values(data.batchData).length - 2)
+          .map((i) => parseInt(i));
+        const student_data_inper = student_data.map((val, index) => {
+          return (val / batch_data[index]) * 100;
+        });
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: Object.keys(data.batchData).splice(
+              2,
+              Object.keys(data.batchData).length - 2
+            ),
+            datasets: [
+              {
+                data: student_data_inper,
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+            plugins: {
+              legend: {
+                display: false,
+              },
+              title: {
+                display: true,
+                text: "My Attendance",
+              },
+            },
+          },
+        });
+      });
+  </script>
+</html>

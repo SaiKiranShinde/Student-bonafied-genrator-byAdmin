@@ -10,7 +10,10 @@
     <%- include("../components/user-header");-%>
     <div class="container" id="bonafied">
       <div class="get-bonafied">
-        <button onclick="event.preventDefault();getBonafied()">Get Bonafied</button>
+        <span class="status"> </span>
+        <button onclick="event.preventDefault();getBonafied()">
+          Get Bonafied
+        </button>
       </div>
       <div class="all-bonafides">
         <table>
@@ -21,19 +24,21 @@
           </thead>
           <tbody>
             <%if(data===null){%>
-                <tr>
-                    <td>No Bonafides</td>
-                </tr>
-            <%}%>
-            <%if (data!=null) {%>
-                <%data.forEach(val=>{%>
-                    <tr>
-                        <td><%=val.filename%></td>
-                        <td><%=val.date%></td>
-                        <td><a href="<%=val.path%>" class="download" download="">Download</a> <a href="" class="delete">Delete</a></td>
-                    </tr>
-                <%})%>
-            <%}%>
+            <tr>
+              <td>No Bonafides</td>
+            </tr>
+            <%}%> <%if (data!=null) {%> <%data.forEach(val=>{%>
+            <tr>
+              <td><%=val.filename%></td>
+              <td><%=val.date%></td>
+              <td>
+                <a href="<%=val.path%>" class="download" download
+                  >Download</a
+                >
+                <a href="http://localhost:5000/api/deletebonafied/<%=val.id%>" class="delete">Delete</a>
+              </td>
+            </tr>
+            <%})%> <%}%>
           </tbody>
         </table>
       </div>

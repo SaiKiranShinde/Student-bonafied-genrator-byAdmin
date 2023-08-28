@@ -9,5 +9,7 @@ routes.get("/dashboard", (req, res) => {
 });
 routes.get("/profile", userControllers.getProfile);
 routes.get("/bonafied", userControllers.Bonafied);
-
+routes.get("/attendance", (req, res) => {
+  res.render("user/attendance")
+})
 module.exports = routes;

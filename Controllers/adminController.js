@@ -9,7 +9,7 @@ const mysql = require("mysql2"),
 
 const pool = mysql.createPool(dbConfig).promise();
 
-const genBonafied = async (req, res) => {
+const approveBonafied = async (req, res) => {
   const rollno = req.params.id;
   pool
     .execute(`select * from student_details where rollno=?`, [rollno])
@@ -69,7 +69,7 @@ const genBonafied = async (req, res) => {
     });
 };
 const getReqBonafides = (req, res) => {
-  pool.execute("select * from request_bonafied").then(([result]) => {
+  pool.execute(`select * from request_bonafied where status="0"`).then(([result]) => {
     if (result.length === 0) {
       return res.render("./admin/bonafied", {
         data: null,
@@ -81,4 +81,13 @@ const getReqBonafides = (req, res) => {
   });
 };
 
-module.exports = { genBonafied, getReqBonafides };
+const rejectBonafied = (req, res) => {
+  const rollno = req.params.id;
+  pool
+    .execute(`update request_bonafied set status=? where rollno=?`, [2, rollno])
+    .then(([result]) => {
+      return res.redirect("/admin/bonafied-request");
+    });
+};
+
+module.exports = { approveBonafied, getReqBonafides, rejectBonafied };

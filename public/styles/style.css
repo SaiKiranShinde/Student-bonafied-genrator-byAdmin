@@ -14,7 +14,7 @@ form#login {
   padding: 0px 10px;
   width: 400px;
 }
-form#login .error{
+form#login .error {
   font-size: 15px;
   color: red;
   transition: all 0.5s ease-in-out;
@@ -95,10 +95,26 @@ header#navegation nav ul li .avatar img {
 }
 
 /* user-Bonafied Page */
-
 .container#bonafied .get-bonafied {
   margin: 10px 15px 0;
+  position: relative;
   text-align: end;
+}
+.container#bonafied .get-bonafied .status {
+  position: absolute;
+  padding: 5px 12px;
+  font-size: 19px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  left: 0;
+  &.pending{
+    background-color: #ffebcc;
+    color: #653c0c;
+  }
+  &.reject{
+    background-color: #f86454ac;
+    color: #f83030de;
+  }
 }
 .container#bonafied .get-bonafied button {
   background-color: rgb(79, 220, 79);
