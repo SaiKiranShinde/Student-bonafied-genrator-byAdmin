@@ -57,3 +57,6 @@ username: 123456789; password:123456789
   + In `Bonafide Request` the admin the approve or reject the request send by the student
     + And server will generates a new Bonafide certificate and send back to the student in downloadable formate.
 
+  ## Website Demo Video
+  By [Clicking Here](https://www.loom.com/share/3251a9b271b34d2c9abc1cb4d0681422?sid=79656285-aac7-4f8e-b139-b31869eeb5e8) you can check the Website demo video
+
